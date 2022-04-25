@@ -13,7 +13,7 @@ let fetchDrinks = function(count){
 
 			newImg.src = url
 
-			document.body.appendChild(newImg)
+			document.querySelector('main').appendChild(newImg)
 		})
 		.catch(error => {
 			console.log(error)
