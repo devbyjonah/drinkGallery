@@ -82,5 +82,14 @@ ul {
   margin: 3rem;
 }
 
-i {
+a {
+  color: white;
+}
+
+a:hover {
+  color: black;
+}
+
+a:visited {
+  color: darkgray;
 }
