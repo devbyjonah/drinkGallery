@@ -1,24 +1,31 @@
-let fetchDrinks = function(count){	
+let fetchDrinks = function(){	
+	let drink = document.querySelector('input').value
 
-	for (let i = 0; i < count; i++){
+	document.querySelector('main').replaceChildren()
 
-	fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
 
+	fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
 		.then(res => res.json())
 		.then(data => {
-
 			console.log(data)
-			let newImg = document.createElement('img')
-			let url = data.drinks[0].strDrinkThumb
 
-			newImg.src = url
+			for (let i = 0; i < data.drinks.length; i++){
 
-			document.querySelector('main').appendChild(newImg)
+				let newLink = document.createElement('a')
+				let newImg = document.createElement('img')
+
+				newLink.appendChild(newImg)
+
+				let url = data.drinks[i].strDrinkThumb
+				newImg.src = url
+				newLink.href = url
+
+				document.querySelector('main').appendChild(newLink)
+			}
 		})
 		.catch(error => {
 			console.log(error)
 		})
-	}
 }
 
-fetchDrinks(20)
+document.querySelector('button').addEventListener('click', fetchDrinks)
