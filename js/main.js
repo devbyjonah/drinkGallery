@@ -7,20 +7,31 @@ class DrinkCard{
 
 	createCard(){
 
-		let container = document.createElement('section')
+		let outerContainer = document.createElement('section')
+		let innerContainer = document.createElement('div')
+		let frontCard = document.createElement('div')
+		let backCard = document.createElement('div')
 		let drinkName = document.createElement('h3')
 		let drinkImage = document.createElement('img')
 		let drinkRecipe = document.createElement('p')
+
+		outerContainer.classList.add('outer')
+		innerContainer.classList.add('inner')
+		frontCard.classList.add('front')
+		backCard.classList.add('back')
 
 		drinkName.textContent = this.name
 		drinkImage.src = this.image + '/preview'
 		drinkRecipe.textContent = this.desc
 
-		container.appendChild(drinkImage)
-		container.appendChild(drinkName)
-		container.appendChild(drinkRecipe)
+		frontCard.appendChild(drinkImage)
+		frontCard.appendChild(drinkName)
+		backCard.appendChild(drinkRecipe)
+		innerContainer.appendChild(frontCard)
+		innerContainer.appendChild(backCard)
+		outerContainer.appendChild(innerContainer)
 
-		document.querySelector('main').appendChild(container)
+		document.querySelector('main').appendChild(outerContainer)
 
 	}
 }

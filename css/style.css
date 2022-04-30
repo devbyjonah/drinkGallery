@@ -19,7 +19,7 @@ body {
 }
 
 /* layout for fixed sidebar */
-  div {
+  .sidebar, .menu {
     position: fixed;
     height: 100%;
     width: 350px;
@@ -54,29 +54,69 @@ body {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     overflow-x: hidden;
+    overflow-y: hidden;
   }
 
-/* drink card layout */
-  section {
-    display: flex;
-    flex-flow: column;
-    justify-content: center;
-    align-items: center;
-  }
+/* drink card layout / flip setup */
 
-  h3 {
-    align-self: center;
-  }
+  /* outer container */
+    .outer {
+      perspective: 1000px;
+      margin: 10px;
+      background: transparent;
+    }
+  /* inner container */
+    .inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
 
-  img {
-    display: block;
-    width: 100%;
-    padding: 10px;
-  }
+    }
+  /* inner flip */
+    .outer:hover .inner {
+      transform: rotateY(180deg);
+      background: transparent;
+    }
+
+  /* front and back layout */
+    .front, .back {
+      height: 100%;
+      backface-visibility: hidden;
+    }
+  /* back side flip */
+    .back {
+      position: absolute;
+      right: 0;
+      left: 0;
+      top: 0;
+      transform: rotateY(180deg);
+    }
+  /* front and back card flex layout */
+    .front, .back {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* add scrollbar for recipe that doesnt fit in card */
+    p {
+      overflow-y: auto;
+      padding: 10px;
+    }
+
+
+img {
+  display: block;
+  width: 100%;
+  padding: 10px;
+}
 
 /* Breakpoint for mobile/tablets */
   @media screen and (max-width: 720px){
-    div {
+    .sidebar, .menu {
       position: relative;
       width: 100%;
       height: 35vh;
@@ -87,26 +127,19 @@ body {
     }
   }
 
-/* Set drink instructions invisible by default */
-  p {
-    display: none;
-  }
-
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
 /* sidebar styling */
-  div {
+  .sidebar {
     background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(119,5,5,1) 100%);
   }
 
 /* styling for drink cards */
-  section {
-    background-color: rgba(105, 105, 105, 0.5);
-    margin: 10px;
+  .inner {
+    background-color: rgba(105, 105, 105, 0.3);
     border: 5px solid rgba(118, 7, 13, 0.5);
     border-radius: 10px;
-    transition: .2s all ease-in;
   }
 
   section:hover {
