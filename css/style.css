@@ -18,106 +18,119 @@ body {
   font-family: Roboto, sans-serif;
 }
 
-div {
-  position: fixed;
-  height: 100%;
-  width: 350px;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  overflow-x: hidden;
-}
-
-main {
-  margin-left: 350px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  overflow-x: hidden;
-}
-
-section {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-}
-
-img {
-  display: block;
-  width: 100%;
-  padding: 10px;
-}
-
-.menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-@media screen and (max-width: 720px){
+/* layout for fixed sidebar */
   div {
-    position: relative;
+    position: fixed;
+    height: 100%;
+    width: 350px;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+
+  .menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  ul {
     width: 100%;
-    height: 35vh;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    padding: 0;
+    margin: 3rem;
   }
 
-  main{
-    margin-left: 0px;
+/* drink card gallery container */
+  main {
+    margin-left: 350px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    overflow-x: hidden;
   }
-}
 
-p {
-  display: none;
-}
+/* drink card layout */
+  section {
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h3 {
+    align-self: center;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    padding: 10px;
+  }
+
+/* Breakpoint for mobile/tablets */
+  @media screen and (max-width: 720px){
+    div {
+      position: relative;
+      width: 100%;
+      height: 35vh;
+    }
+
+    main{
+      margin-left: 0px;
+    }
+  }
+
+/* Set drink instructions invisible by default */
+  p {
+    display: none;
+  }
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+/* sidebar styling */
+  div {
+    background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(119,5,5,1) 100%);
+  }
 
-div {
-  background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(119,5,5,1) 100%);
-}
+/* styling for drink cards */
+  section {
+    background-color: rgba(105, 105, 105, 0.5);
+    margin: 10px;
+    border: 5px solid rgba(118, 7, 13, 0.5);
+    border-radius: 10px;
+    transition: .2s all ease-in;
+  }
 
-section {
-  background-color: rgba(105, 105, 105, 0.5);
-  margin: 10px;
-  border: 5px solid rgba(118, 7, 13, 0.5);
-  border-radius: 10px;
-  transition: .2s all ease-in;
-}
+  section:hover {
+    transform: scale(1.1);
+  }
 
-section:hover {
-  transform: scale(1.1);
-}
+/* set font weights */
+  h1 {
+    font-weight: 700;
+  }
 
-ul {
-  width: 100%;
-  list-style: none;
-  display: flex;
-  justify-content: space-around;
-  padding: 0;
-  margin: 3rem;
-}
+  h3 {
+    font-weight: 400;
+  }
 
-h1 {
-  font-weight: 700;
-}
+  p {
+    font-weight: 100;
+  }
 
-h3 {
-  font-weight: 400;
-}
+/* set link colors */
+  a {
+    color: white;
+  }
 
-p {
-  font-weight: 100;
-}
-
-a {
-  color: white;
-}
-
-a:hover {
-  color: black;
-}
+  a:hover {
+    color: black;
+  }
