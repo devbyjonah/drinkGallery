@@ -115,7 +115,7 @@ img {
 }
 
 /* Breakpoint for mobile/tablets */
-  @media screen and (max-width: 720px){
+  @media screen and (max-width: 1000px){
     .sidebar, .menu {
       position: relative;
       width: 100%;
