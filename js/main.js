@@ -76,10 +76,3 @@ document.querySelector('form').addEventListener('submit', function(e) {
 	searchDrinks(document.querySelector('input').value)
 	e.preventDefault()
 }, false)
-
-/*document.querySelector('button').addEventListener('click', () => searchDrinks(document.querySelector('input').value))
-document.querySelector('button').addEventListener('keypress', e => {
-	if (e.key === 'Enter'){
-		searchDrinks(document.querySelector('input').value)
-	}
-}) */
