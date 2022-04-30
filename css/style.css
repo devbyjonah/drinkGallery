@@ -7,9 +7,6 @@
   box-sizing: border-box;
 }
 
-div {
-  background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(119,5,5,1) 100%);
-}
 /******************************************
 /* LAYOUT
 /*******************************************/
@@ -40,15 +37,23 @@ main {
   overflow-x: hidden;
 }
 
+section {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+
 img {
   display: block;
   width: 100%;
-  transition: .2s all ease-in;
   padding: 10px;
 }
 
-img:hover {
-  transform: scale(1.1);
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 @media screen and (max-width: 720px){
@@ -63,15 +68,29 @@ img:hover {
   }
 }
 
-.menu {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+p {
+  display: none;
 }
 
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+
+div {
+  background: linear-gradient(0deg, rgba(170,170,170,1) 0%, rgba(119,5,5,1) 100%);
+}
+
+section {
+  background-color: rgba(105, 105, 105, 0.5);
+  margin: 10px;
+  border: 5px solid rgba(118, 7, 13, 0.5);
+  border-radius: 10px;
+  transition: .2s all ease-in;
+}
+
+section:hover {
+  transform: scale(1.1);
+}
 
 ul {
   width: 100%;
@@ -88,8 +107,4 @@ a {
 
 a:hover {
   color: black;
-}
-
-a:visited {
-  color: darkgray;
 }
