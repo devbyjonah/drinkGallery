@@ -1,68 +1,75 @@
-/* init function initializes the default drinks on the page by looping a request to the API for a random drink */
+class DrinkCard{
+	constructor(drinkName, drinkImage, drinkRecipe){
+		this.name = drinkName
+		this.image = drinkImage
+		this.desc = drinkRecipe
+	}
 
-let init = function() {
+	createCard(){
 
-	for (let i = 0; i < 40; i++){
-		fetch(`https://www.thecocktaildb.com/api/json/v1/1/random.php`)
-			.then(res => res.json())
-			.then(data => {
+		let container = document.createElement('section')
+		let drinkName = document.createElement('h3')
+		let drinkImage = document.createElement('img')
+		let drinkRecipe = document.createElement('p')
 
-					/* create drink cards */
-					let newLink = document.createElement('a')
-					let newImg = document.createElement('img')
+		drinkName.textContent = this.name
+		drinkImage.src = this.image + '/preview'
+		drinkRecipe.textContent = this.desc
 
-					newLink.appendChild(newImg)
+		container.appendChild(drinkImage)
+		container.appendChild(drinkName)
+		container.appendChild(drinkRecipe)
 
-					let url = data.drinks[0].strDrinkThumb
-					newImg.src = url
-					newLink.href = url
+		document.querySelector('main').appendChild(container)
 
-					/* insert card into DOM under main element */
-					document.querySelector('main').appendChild(newLink)
-			})
-			.catch(error => {
-				console.log(error)
-			})
 	}
 }
 
-/* fetch drinks is called on user searching */
+function init(){
+	while (!searching) {
+		for (let i = 0; i < 45; i++){
+			fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
+				.then(res => res.json())
+				.then(data => {
 
-let fetchDrinks = function(){	
+					let curDrink = data.drinks[0]
+					let newCard = new DrinkCard(curDrink.strDrink, curDrink.strDrinkThumb, curDrink.strInstructions)
 
-	/* assign drink variable to user input */
-	let drink = document.querySelector('input').value
+					newCard.createCard()
 
-	/* clear main element of all children */
+				})
+				.catch(error => {
+					console.log(error)
+				})
+		}
+		break
+	}
+}
+
+let searchDrinks = function (inputStr){
+	let userInput = inputStr
+
 	document.querySelector('main').replaceChildren()
 
-	/* search for inputted drink */
-	fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${drink}`)
+	fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${userInput}`)
 		.then(res => res.json())
 		.then(data => {
-			console.log(data)
-
 			for (let i = 0; i < data.drinks.length; i++){
 
-				/* create drink cards */
-				let newLink = document.createElement('a')
-				let newImg = document.createElement('img')
+				let curDrink = data.drinks[i]
+				let newCard = new DrinkCard(curDrink.strDrink, curDrink.strDrinkThumb, curDrink.strInstructions)
 
-				newLink.appendChild(newImg)
+				newCard.createCard()
 
-				let url = data.drinks[i].strDrinkThumb
-				newImg.src = url
-				newLink.href = url
-
-				/* insert card to DOM under main element */
-				document.querySelector('main').appendChild(newLink)
 			}
 		})
 		.catch(error => {
 			console.log(error)
 		})
+	searching = false
 }
 
-/* calls init after DOM has fully loaded (doesn't wait for stylesheets) */
+let searching = false
+
 document.addEventListener('DOMContentLoaded', init)
-document.querySelector('button').addEventListener('click', fetchDrinks)
+document.querySelector('button').addEventListener('click', () => searchDrinks(document.querySelector('input').value))
