@@ -130,6 +130,11 @@ img {
       margin-left: 0px;
       grid-template-columns: repeat(auto-fit, 50%);
     }
+
+    .outer {
+      margin: 20px;
+      padding: 10px;
+    }
   }
 
 /******************************************
